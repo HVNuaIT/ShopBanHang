@@ -1,0 +1,274 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title </title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="~/vendor/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <!-- Bootstrap Core CSS -->
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="~/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="~/Content/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+    <!-- Custom Fonts -->
+    <link href="~/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script type="application/x-javascript">
+         addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+        function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //for-mobile-apps -->
+    <link href="~/Content/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <!-- Custom Theme files -->
+    <link href="~/Content/css/style.css" rel='stylesheet' type='text/css' />
+    <!-- js -->
+    <script src="~/Content/js/jquery-1.11.1.min.js"></script>
+    <!-- //js -->
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript" src="~/Content/js/move-top.js"></script>
+    <script type="text/javascript" src="~/Content/js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
+    <!-- start-smoth-scrolling -->
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet">
+    <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
+    <!--- start-rate---->
+    <script src="~/Content/js/jstarbox.js"></script>
+    <link rel="stylesheet" href="~/Content/css/jstarbox.css" type="text/css" media="screen" charset="utf-8" />
+    <!---//End-rate---->
+    <style>
+        #style-6::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            background-color: #F5F5F5;
+        }
+
+        #style-6::-webkit-scrollbar {
+            width: 10px;
+            background-color: #F5F5F5;
+        }
+
+        #style-6::-webkit-scrollbar-thumb {
+            background-color: #F90;
+            background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent)
+        }
+    </style>
+</head>
+
+<body id="style-6">
+    <div class="header">
+        <div class="container">
+            <div class="logo">
+                <h1><a href="@Url.Action("Index", "Home")"><b>T<br>H<br>E</b>Shopper<span>The Best Fashion</span></a></h1>
+            </div>
+
+            <div class="head-t">
+                <ul class="card">
+
+                    @if (Session["idUser"] != null)
+                    {
+                        <li><a>Xin Chào :@Session["Email"]</a></li>
+                        <li>
+                            <a href="~/Accout/Logout" class="btn btn-warning">
+                                Logout
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="btn btn-warning">
+                               Đơn Đặt Hàng
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li><a href="~/Accout/Login"><i class="fa fa-user" aria-hidden="true"></i>Đăng Nhập</a></li>
+                        <li><a href="~/Accout/DangKi"><i class="fa fa-arrow-right" aria-hidden="true"></i>Đăng Kí Tài Khoản</a></li>
+                    }
+
+
+                </ul>
+            </div>
+            <div class="header-ri">
+                <ul class="social-top">
+                    <li><a href="http://facebook.com/profile.php?id=100038291719553" target="_blank" class="icon facebook"><i class="fa fa-facebook" aria-hidden="true"></i><span></span></a></li>
+                    <li><a href="#" class="icon pinterest"><i class="fa fa-youtube-play" aria-hidden="true"></i><span></span></a></li>
+                </ul>
+            </div>
+            <div class="nav-top">
+                <nav class="navbar navbar-default">
+                    <div class="navbar-header nav_2">
+                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+                        <ul class="nav navbar-nav ">
+                            <li class=" "><a href="@Url.Action("Index", "Home")" class="hyper "><span>Trang chủ</span></a></li>
+                            @{
+                                ShopBanHang.Models.Shop db = new ShopBanHang.Models.Shop();
+                                foreach (var itemCate in db.DanhMucs)
+                                {
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle  hyper" data-toggle="dropdown"><span>@itemCate.tenDanhMuc<b class="caret"></b></span></a>
+                                        <ul class="dropdown-menu">
+                                            <!--  <div class="col-sm-12">
+                                                                                <ul class="multi-column-dropdown">
+                                                                                    @*   @foreach (var itemPt in db.ProductTypes.Where(c => c.cateID == itemCate.cateID))
+                                            {
+                                                <li><a href="@Url.Action("ProductsByProType", "Products", new { id = itemPt.typeID, page = 1 })"><i class="fa fa-angle-right" aria-hidden="true"></i>@itemPt.typeName</a></li>
+                                            }*@
+                                                                                </ul>
+                                                                            </div>
+                                                                              -->
+                                            <!--<div class="col-sm-12">
+                                                <ul class="multi-column-dropdown">
+                                                    <li>
+
+                                                        <img src="" width="100" height="50" />
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                                -->
+
+                                        </ul>
+                                    </li>
+                                }
+                            }
+                            <li class="dropdown ">
+                                <a href="#" class="dropdown-toggle  hyper" data-toggle="dropdown"><span>Hãng sản xuất<b class="caret"></b></span></a>
+                                <ul class="dropdown-menu">
+                                    <!--  <div class="col-sm-12">
+                                                                        <ul class="multi-column-dropdown">
+                                                                            @*  @foreach (var itemPdc in db.Producers)
+                                    {
+                                        <li><a href="@Url.Action("ProductsByPdc", "Products", new { id = itemPdc.pdcID, page = 1 })"><img src="@itemPdc.pdcPhoto" width="20" height="20" /> @itemPdc.pdcName</a></li>
+                                    }
+
+                                                                        </ul>
+                                                                    </div>
+                                                                            *@
+                                                                      -->
+                                </ul>
+                            </li>
+                            <li><a href="@Url.Action("Index","EmailSetup")" class="hyper "><span>Phản hồi</span></a></li>
+                        </ul>
+                    </div>
+                </nav>
+                <div class="cart">
+                    @{
+                        List<ShopBanHang.Models.CartItem> gio = Session["giohang"] as List<ShopBanHang.Models.CartItem>;
+                        if (gio == null || gio.Count == 0)
+                        {
+                            <a href="@Url.Action("Index","GioHang")"><span class="fa fa-shopping-cart "><span class="badge badge-notify my-cart-badge">0</span></span></a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Index","GioHang")"><span class="fa fa-shopping-cart my-cart-icon"><span class="badge badge-notify my-cart-badge">@gio.Count</span></span></a>
+                        }
+                    }
+                </div>
+             
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <!-- //footer-->
+        <!-- smooth scrolling -->
+        <div class="row">
+            <div>
+                <div class="col-sm-4">
+                    <h4>Phương thức thanh toán &amp; giao hàng</h4>
+                    <div class="content">
+                        <div class="toasang">
+                            <img src="~/Image/icon_shipping.png" />
+                        </div>
+                        <p><strong class="bold">Miễn phí vận chuyển cho đơn hàng trên 1.000.000VNĐ</strong></p>
+                        <ul style="font-size:large;">
+                            <li class="fa fa-check-circle">
+                                <a href="#" title="">
+                                    Giao hàng và thu tiền tận nơi
+                                </a>
+                            </li>
+                            <li class="fa fa-check-circle">
+                                <a href="#" title="">Chuyển khoản và giao hàng</a>
+                            </li>
+                            <li class="fa fa-check-circle">
+                                <a href="#" title="">Mua hàng tại shop</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <h4>Hỗ trợ 24/7</h4>
+                    <div class="content">
+                        <div class="toasang">
+                            <img src="~/Image/icon_support.png" />
+                        </div>
+                        <p><strong>Gọi ngay cho chúng tôi khi bạn có thắc mắc</strong></p>
+                        <ul style="font-size:xx-large;">
+                            <li class="fa fa-check-circle">
+                                <strong class="big npl">0349889594 </strong>
+                            </li>
+                            <li class="fa fa-check-circle">
+                                <strong class="big npl">0349889594 </strong>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <h4>Thẻ thành viên</h4>
+                    <div class="content">
+                        <div class="toasang">
+                            <img src="~/Image/icon_card.png" />
+                        </div>
+                        <p><strong class="bold">Chế độ ưu đãi thành viên VIP:</strong></p>
+                        <ul style="font-size:large;">
+                            <li class="fa fa-check-circle">5% cho thành viên Bạc</li>
+                            <li class="fa fa-check-circle">10% cho thành viên Vàng</li>
+                            <li class="fa fa-check-circle">15% cho thành viên Kim cương</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+                /*
+                    var defaults = {
+                    containerID: 'toTop', // fading element id
+                    containerHoverID: 'toTopHover', // fading element hover id
+                    scrollSpeed: 1200,
+                    easingType: 'linear'
+                };
+                */
+                $().UItoTop({ easingType: 'easeOutQuart' });
+            });
+    </script>
+    <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+    <!-- //smooth scrolling -->
+    <script src="~/Content/js/bootstrap.js"></script>
+    <!-- for bootstrap working -->
+</body>
+</html>

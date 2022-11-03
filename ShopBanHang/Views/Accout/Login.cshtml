@@ -1,0 +1,54 @@
+﻿@model ShopBanHang.Models.TaiKhoan
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+
+<h2 style="text-align:center">Đăng Nhập </h2>
+<style>
+    .center {
+        border: 3px solid red;
+    }
+</style>
+@if (ViewBag.err == null)
+{@ViewBag.err}
+
+<div class="center">
+    @using (Html.BeginForm("XacThuc", "Accout", FormMethod.Post))
+    {
+
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <table align="center">
+            <tr>
+                <td>Email:</td>
+                <td>@Html.TextBoxFor(m => m.Email)</td>
+                @Html.ValidationMessageFor(m => m.Email)
+
+            </tr>
+            <tr>
+                <td colspan="5"></td>
+
+            </tr>
+        
+            <tr>
+                <td>Passwork:</td>
+                <td>@Html.PasswordFor(m => m.matKhau)</td>
+                @Html.ValidationMessageFor(m => m.Email)
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <input type="submit" name="DangNhap" value="Đăng Nhập " />
+
+
+                </td>
+
+            </tr>
+
+        </table>
+
+    }
+
+</div>
