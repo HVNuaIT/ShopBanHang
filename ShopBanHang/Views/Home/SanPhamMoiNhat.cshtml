@@ -1,0 +1,101 @@
+﻿@model List<ShopBanHang.Models.SanPham>
+@{
+    ViewBag.Title = "SanPhamMoiNhat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    //ShopProject.Repository.ProductDAO proDAO = new ShopProject.Repository.ProductDAO();
+    ShopBanHang.Models.Shop db = new ShopBanHang.Models.Shop();
+}
+<div class="content-top ">
+    <div class="container ">
+
+        <div class="spec ">
+           <h1 style="text-decoration:none;">Tất Cả Sản Phẩm </h1>
+            <div class="ser-t">
+                <b></b>
+                <span><i></i></span>
+                <b class="line"></b>
+            </div>
+        </div>
+        <div class="tab-head ">
+            <div class=" tab-content tab-content-t ">
+                <div class="tab-pane active text-style" id="tab1">
+                    <div class=" con-w3l">
+                     
+                        @foreach (var item in db.SanPhams.SqlQuery("SELECT * FROM SanPham "))
+                        {
+                            
+                            // Double newPrice = Double.Parse(item.donGia) - ((Double.Parse(item.donGia) * item.giamGia.Value) / 100);
+                            <div class="col-md-3 m-wthree" style="margin-bottom:30px;">
+                                <div class="col-m">
+
+                                    <a href="@Url.Action("Index", "ChiTietSanPham", new { Id=item.maSanPham})" class="offer-img">
+
+                                        @*   @if (Double.Parse(item.donGia) > newPrice)
+                                            {
+                                                <div class="offer"><p><span>Giảm @item.giamGia %</span></p></div>
+                                            }
+                                            else
+                                            {
+
+                                            }*@
+                                    </a>
+                                    <div class="mid-1">
+                                        <div class="women">
+                                            <div>
+                                                <a><img src="@item.hinhAnh" width="200" height="200" /> </a>
+                                            </div>
+                                            @if (item.tenSanPham.Length > 20)
+                                            {
+                                                <h6><a href="@Url.Action("Index", "ChiTietSanPham", new { id=item.maSanPham })" data-toggle="tooltip" title="@item.tenSanPham">@item.tenSanPham.Substring(0, 19) . . .</a></h6>
+                                            }
+                                            else
+                                            {
+                                                <h6><a href="@Url.Action("Index", "ChiTietSanPham", new { id=item.maSanPham })">@item.tenSanPham</a></h6>
+                                            }
+                                        </div>
+
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    Gia: @item.donGia VND
+                                    <div class="mid-2">
+                                        @* <p><label>@proDAO.formatNumber(item.proPrice) VNĐ</label><em class="item_price">@proDAO.formatNumber(newPrice.ToString()) VNĐ</em></p>
+                                        *@
+                                        <div class="clearfix"></div>
+                                        <div class="block">
+                                            @*   @if (db.Rates.Find(item.proID) != null)
+                                                {
+                                                    for (int i = 0; i < db.Rates.Find(item.proID).rateStar; i++)
+                                                    {
+                                                        <img src="~/Image/star.png" style="background-color:rgb(255, 172, 0);" />
+                                                    }
+                                                    for (int i = 0; i < 5 - db.Rates.Find(item.proID).rateStar; i++)
+                                                    {
+                                                        <img src="~/Image/star.png" style="background-color:#b0b0b0" />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    for (int i = 0; i < 5; i++)
+                                                    {
+                                                        <img src="~/Image/star.png" style="background-color:#b0b0b0" />
+                                                    }
+                                                }
+                                            *@
+
+                                        </div>
+
+                                        <div class="add">
+                                            <a class="btn btn-success" href="@Url.Action("ThemVaoGio", "GioHang", new { SanPhamID = item.maSanPham })"> <span class="glyphicon glyphicon-shopping-cart"></span>  Thêm vào giỏ </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</div>
