@@ -46,8 +46,30 @@ namespace ShopBanHang.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult DangKi(TaiKhoan taiKhoan)
+        public ActionResult XacThucDangKi(TaiKhoan taiKhoan)
         {
+            if (ModelState.IsValid)
+            {
+                var check = db.TaiKhoans.FirstOrDefault(s => s.Email == taiKhoan.Email);
+
+
+                if (check == null)
+                {
+                    db.Configuration.ValidateOnSaveEnabled = false;
+                    db.TaiKhoans.Add(taiKhoan);
+
+                    db.SaveChanges();
+
+
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    ViewBag.error = "Email already exists";
+                    return View();
+                }
+
+            }
             return View();
         }
 

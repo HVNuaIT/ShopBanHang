@@ -1,11 +1,9 @@
-﻿@model ShopBanHang.Models.Gmail
-
+﻿@model ShopBanHang.Models.LienHe
 
 @{
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<!DOCTYPE html>
 
 <html>
 <head>
@@ -15,7 +13,6 @@
         .red {
             color: red;
         }
-      
     </style>
     <title>Liên hệ</title>
 </head>
@@ -36,10 +33,10 @@
                         <table>
                             <tr>
                                 <td>
-                                    From:
+                                    Tên Khách Hàng:
                                 </td>
                                 <td>
-                                    @Html.TextBoxFor(model => model.To)
+                                    @Html.TextBoxFor(model => model.TenKhachHang)
                                 </td>
                             </tr>
                             <tr>
@@ -47,41 +44,27 @@
                                     Email:
                                 </td>
                                 <td>
-                                    @Html.TextBoxFor(model => model.From)
+                                    @Html.TextBoxFor(model => model.Email)
                                 </td>
                             </tr>
+                            <tr>
+                                <td>
+                                    Số Điện Thoại Liên Hệ :
+                                </td>
+                                <td>@Html.TextBoxFor(model => model.SDT)</td>
+                            </tr>
+
 
                             <tr>
                                 <td>
-                                    Password:
+                                    Lời nhắn :
                                 </td>
-                                <td>
-                                    @Html.TextBoxFor(model => model.Password, new { type = "password" })
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Subject:
-                                </td>
-                                <td>@Html.TextBoxFor(model => model.Subject)</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Body:
-                                </td>
-                                <td>@Html.TextAreaFor(model => model.Body, new { rows = "15", cols = "20" })</td>
+                                <td>@Html.TextAreaFor(model => model.LoiNhan, new { rows = "15", cols = "20" })</td>
                             </tr>
 
-                            <tr>
-                                <td>
-                                    File:
-                                </td>
-                                <td>
-                                    @Html.TextBoxFor(model => model.File, new { type = "file" })
-                                </td>
-                            </tr>
+                           
                             <tr align="center">
-                                <td >
+                                <td>
                                     <input type="submit" value="GỬI" size="100" style="right:auto;left:auto;color:red" />
                                 </td>
                                 <td></td>

@@ -22,7 +22,9 @@
     }
     else
     {
-        <div class="spec ">
+
+
+<div class="spec ">
             <h3>Thanh toán</h3>
             <div class="ser-t">
                 <b></b>
@@ -30,54 +32,61 @@
                 <b class="line"></b>
             </div>
         </div>
-        <div class="row">
+
+
+<div class="row">
             <div id="center_column" class="center_column">
                 <div class="row">
                     <div id="left_column" class="column col-sm-12 col-md-12">
                         <form class="form-horizontal" action="/ThanhToan/StepEnd" method="post">
                             <div class="col-sm-6 col-md-6">
                                 <div class="detail_ct">
-                                    <legend>Thông tin liên hệ</legend>
-                                    <div class="form-group">
-                                        <label class="col-lg-4 control-label">Họ và tên *</label>
-                                        <div class="col-lg-8">
-                                            <input type="text" required name="fullname" class="form-control input-sm field" style="width:300px;" value="">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-4 control-label">Email</label>
-                                        <div class="col-lg-8">
-                                            <input type="email" required placeholder="Không bắt buộc" class="form-control input-sm field" name="email" style="width:300px;" value="">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-4 control-label">Số điện thoại *</label>
-                                        <div class="col-lg-8">
-                                            <input type="text" required class="form-control input-sm field" id="phone" name="phone" style="width:300px;" value="">
-                                        </div>
-                                    </div>
-                                    <legend>Địa chỉ giao hàng</legend>
-                                    <div class="form-group">
-                                        <label class="col-lg-4 control-label">Địa chỉ</label>
-                                        <div class="col-lg-8">
-                                            <textarea required class="form-control input-sm field" placeholder="Vui lòng ghi địa chỉ chi tiết..." name="address" rows="5" style="height:50px;"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-4 control-label">Ghi chú</label>
-                                        <div class="col-lg-8">
-                                            <textarea required class="form-control input-sm field" placeholder="Vui lòng ghi size của từng sản phẩm vào ô này..." name="note" rows="5" style="height:50px;"></textarea>
-                                        </div>
-                                    </div>
-                                    <fieldset>
+                                    @using (Html.BeginForm("StepEnd", "ThanhToan", FormMethod.Post))
+                                    {
+                                        <legend>Thông tin liên hệ</legend>
+
                                         <div class="form-group">
-                                            <label class="col-lg-4 control-label"></label>
+                                            <label class="col-lg-4 control-label">Họ và tên *</label>
                                             <div class="col-lg-8">
-                                                <input type="submit" style="width:auto;" name="submit_step1" class="btn btn-danger btn-buynow" value="Gửi đơn hàng">
+                                                <input type="text" required name="fullname" class="form-control input-sm field" style="width:300px;" value="">
                                             </div>
                                         </div>
-                                    </fieldset>
-                                </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Email</label>
+                                            <div class="col-lg-8">
+                                                <input type="email" required placeholder="Không bắt buộc" class="form-control input-sm field" name="email" style="width:300px;" value="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Số điện thoại *</label>
+                                            <div class="col-lg-8">
+                                                <input type="text" required class="form-control input-sm field" id="phone" name="phone" style="width:300px;" value="">
+                                            </div>
+                                        </div>
+                                        <legend>Địa chỉ giao hàng</legend>
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Địa chỉ</label>
+                                            <div class="col-lg-8">
+                                                <textarea required class="form-control input-sm field" placeholder="Vui lòng ghi địa chỉ chi tiết..." name="address" rows="5" style="height:50px;"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label">Ghi chú</label>
+                                            <div class="col-lg-8">
+                                                <textarea required class="form-control input-sm field" placeholder="Vui lòng ghi size của từng sản phẩm vào ô này..." name="note" rows="5" style="height:50px;"></textarea>
+                                            </div>
+                                        </div>
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <label class="col-lg-4 control-label"></label>
+                                                <div class="col-lg-8">
+                                                    <input type="submit" style="width:auto;" name="submit_step1" class="btn btn-danger btn-buynow" value="Gửi đơn hàng">
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                         }
+                                    </div>
+                                   
                             </div> <div class="col-sm-6 col-md-6">
                                 <div class="detail_ct" style="height:auto; min-height:inherit;">
                                     <legend>Giỏ hàng của bạn</legend>
@@ -106,7 +115,7 @@
                                                     </td>
                                                     <td>@item.SoLuong</td>
                                                     <td>@item.DonGia.ToString("#,##0") VNĐ</td>
-                                                    <td>@item.ThanhTien.ToString("#,##0") VNĐ</td>
+                                                    <td >@item.ThanhTien.ToString("#,##0") VNĐ</td>
                                                 </tr>
                                                 total += item.ThanhTien;
                                             }
