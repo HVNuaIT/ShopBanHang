@@ -194,7 +194,7 @@
     <Compile Include="Models\SanPham.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TaiKhoan.cs">
+    <Compile Include="Models\User.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Util.cs" />
@@ -478,6 +478,7 @@
     <Content Include="Views\ThanhToan\HoaDon.cshtml" />
     <Content Include="Views\EmailSetup\Index.cshtml" />
     <Content Include="Views\Home\PaymentConfirm.cshtml" />
+    <Content Include="Views\Accout\VerifyAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

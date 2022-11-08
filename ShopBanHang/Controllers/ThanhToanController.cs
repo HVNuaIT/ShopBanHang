@@ -33,8 +33,8 @@ namespace ShopBanHang.Controllers
             string address = Request.Form["address"];
             string note = Request.Form["note"];
             //kiểm tra xem có customer chưa và cập nhật lại
-            TaiKhoan newCus = new TaiKhoan();
-            var cus = db.TaiKhoans.FirstOrDefault(p => p.soDienThoai.Equals(phone));
+            User newCus = new User();
+            var cus = db.Users.FirstOrDefault(p => p.soDienThoai.Equals(phone));
             if (cus != null)
             {
                 //nếu có số điện thoại trong db rồi
@@ -53,7 +53,7 @@ namespace ShopBanHang.Controllers
                 newCus.Ten = fullname;
                 newCus.Email = email;
                 newCus.diaChi = address;
-                db.TaiKhoans.Add(newCus);
+                db.Users.Add(newCus);
                 db.SaveChanges();
             }
             //Thêm thông tin vào order và orderdetail

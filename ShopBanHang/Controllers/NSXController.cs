@@ -13,7 +13,7 @@ namespace ShopBanHang.Controllers
         Shop db = new Shop();
         public ActionResult Index()
         {
-            List<NX> listNXS = new List<NX>();
+          
 
             return View();
         }

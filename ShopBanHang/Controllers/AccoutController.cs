@@ -2,8 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
+using System.Web.UI.WebControls;
+using System.Web.Security;
 
 namespace ShopBanHang.Controllers
 {
@@ -19,21 +24,25 @@ namespace ShopBanHang.Controllers
        
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult XacThuc(string Email,string pass)
         {
             if (ModelState.IsValid)
             {
-                var check = db.TaiKhoans.Where(s => s.Email.Equals(Email) &&
-            s.matKhau.Equals(pass)).ToList();
-                if (check.Count > 0)
+                var check = db.Users.Where(s => s.Email.Equals(Email) &&
+            s.matKhau.Equals(pass) && s.xacThucEmail==true).ToList();
+              
+                if (check!=null)
                 {
 
+                 
 
                     Session["Email"] = check.FirstOrDefault().Email;
                     Session["idUser"] = check.FirstOrDefault().maTaiKhoan;
                     Session["TenKhachHang"] = check.FirstOrDefault().Ten;
 
-                    return RedirectToAction("Index", "Home");
+                   
+                   return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -51,16 +60,18 @@ namespace ShopBanHang.Controllers
         [HttpPost]
         public ActionResult XacThucDangKi(string Email,string pass,string diaChi,string ten,int sdt,string gioitinh)
         {
+           
+            string message = "";
             if (ModelState.IsValid)
             {
-                var check = db.TaiKhoans.FirstOrDefault(s => s.Email.Equals(Email));
+                var check = db.Users.FirstOrDefault(s => s.Email.Equals(Email));
 
 
                 if (check == null)
                 {
 
                    db.Configuration.ValidateOnSaveEnabled = false;
-                    TaiKhoan tk = new TaiKhoan()
+                   User tk = new User()
                     {
                         Email = Email,
                     matKhau = pass,
@@ -69,13 +80,17 @@ namespace ShopBanHang.Controllers
                     soDienThoai = sdt.ToString(),
                     gioiTinh = gioitinh,
                 };
-                    
+                    tk.ActivationCode = Guid.NewGuid();
 
-                    db.TaiKhoans.Add(tk);
+
+                    db.Users.Add(tk);
 
                     db.SaveChanges();
-
-                    ViewBag.Message = "Đăng Kí thành công Bạn có thể đăng nhập với tài khoản này";
+                    SendVerificationLinkEmail(tk.Email, tk.ActivationCode.ToString());
+                    //message = "Đăng Kí thành Công .Links Xác thực tài khoản " +
+                      //  " has been sent to your email id:" + tk.Email;
+                  
+                    ViewBag.Message = "Đăng Kí thành công Bạn Hãy Kiểm Tra Email Để Thực Hiện Đăng Nhập Nhé !!! "+tk.Email;
                     //return RedirectToAction("DangKi", "Accout");
                     return View("DangKi");
                 }
@@ -88,13 +103,68 @@ namespace ShopBanHang.Controllers
             }
             return View();
         }
-
+        [HttpGet]
+        public ActionResult VerifyAccount(string id)
+        {
+            bool Status = false;
+            using (Shop dc = new Shop())
+            {
+                dc.Configuration.ValidateOnSaveEnabled = false; // This line I have added here to avoid 
+                                                                // Confirm password does not match issue on save changes
+                var v = dc.Users.Where(a => a.ActivationCode == new Guid(id)).FirstOrDefault();
+                if (v != null)
+                {
+                    v.xacThucEmail = true;
+                    dc.SaveChanges();
+                    Status = true;
+                }
+                else
+                {
+                    ViewBag.Message = "Invalid Request";
+                }
+            }
+            ViewBag.Status = Status;
+            return View();
+        }
         public ActionResult Logout()
         {
             Session.Clear();//remove session
             return RedirectToAction("Login");
         }
 
+        [NonAction]
+        public void SendVerificationLinkEmail(string emailID, string activationCode)
+        {
+            var verifyUrl = "/Accout/VerifyAccount/" + activationCode;
+            var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
+
+            var fromEmail = new MailAddress("namchibi18@gmail.com", "ShopVP");
+            var toEmail = new MailAddress(emailID);
+            var fromEmailPassword = "vkuoutuxfchlsogr"; // Replace with actual password
+            string subject = "Your account is successfully created!";
+
+            string body = "<br/><br/>Cảm ơn quý khách đã đăng kí tài khoản " +
+                " Thành Công.Vui lòng click vào Link để thực hiện việc xác thực tài khoản và đăng nhập" +
+                " <br/><br/><a href='" + link + "'>" + link + "</a> ";
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromEmail.Address, fromEmailPassword)
+            };
+
+            using (var message = new MailMessage(fromEmail, toEmail)
+            {
+                Subject = subject,
+                Body = body,
+                IsBodyHtml = true
+            })
+                smtp.Send(message);
+        }
 
     }
 }

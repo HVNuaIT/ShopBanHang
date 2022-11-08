@@ -33,6 +33,6 @@ namespace ShopBanHang.Models
         public virtual DbSet<LienHe> LienHes { get; set; }
         public virtual DbSet<NX> NXS { get; set; }
         public virtual DbSet<SanPham> SanPhams { get; set; }
-        public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

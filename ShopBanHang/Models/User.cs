@@ -12,7 +12,7 @@ namespace ShopBanHang.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TaiKhoan
+    public partial class User
     {
         public int maTaiKhoan { get; set; }
         public string Email { get; set; }
@@ -22,5 +22,6 @@ namespace ShopBanHang.Models
         public string gioiTinh { get; set; }
         public string Ten { get; set; }
         public Nullable<bool> xacThucEmail { get; set; }
+        public Nullable<System.Guid> ActivationCode { get; set; }
     }
 }

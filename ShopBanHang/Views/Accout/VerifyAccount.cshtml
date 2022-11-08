@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>VerifyAccount</title>
+</head>
+<body>
+    <div>
+        @if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+        {
+            <div class="alert alert-success">
+                <strong>
+                    Thành Công
+                </strong>Tài khoản của bạn đã được xác thực thành công bạn có muốn quay lại trang Đăng nhập @Html.ActionLink("Đăng Nhập", "Login","Accout")
+            </div>
+        }
+        else
+        {
+    <div class="alert alert-success">
+        <strong>
+           Lỗi 
+        </strong> bạn có muốn quay lại trang Đăng kí Không @Html.ActionLink("Đăng Kí", "DangKi","Accout")
+
+    </div>
+                }
+
+            </div>
+</body>
+</html>

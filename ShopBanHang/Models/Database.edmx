@@ -89,7 +89,7 @@
           <Property Name="donGia" Type="float" />
           <Property Name="giamGia" Type="float" />
         </EntityType>
-        <EntityType Name="TaiKhoan">
+        <EntityType Name="User">
           <Key>
             <PropertyRef Name="maTaiKhoan" />
           </Key>
@@ -101,6 +101,7 @@
           <Property Name="gioiTinh" Type="nchar" MaxLength="10" />
           <Property Name="Ten" Type="nvarchar(max)" />
           <Property Name="xacThucEmail" Type="bit" />
+          <Property Name="ActivationCode" Type="uniqueidentifier" />
         </EntityType>
         <EntityContainer Name="ShopModelStoreContainer">
           <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
@@ -111,7 +112,7 @@
           <EntitySet Name="LienHe" EntityType="Self.LienHe" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NXS" EntityType="Self.NXS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -202,7 +203,7 @@
           <Property Name="donGia" Type="Double" />
           <Property Name="giamGia" Type="Double" />
         </EntityType>
-        <EntityType Name="TaiKhoan">
+        <EntityType Name="User">
           <Key>
             <PropertyRef Name="maTaiKhoan" />
           </Key>
@@ -214,6 +215,7 @@
           <Property Name="gioiTinh" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Ten" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="xacThucEmail" Type="Boolean" />
+          <Property Name="ActivationCode" Type="Guid" />
         </EntityType>
         <EntityContainer Name="Shop" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Admins" EntityType="Self.Admin" />
@@ -224,7 +226,7 @@
           <EntitySet Name="LienHes" EntityType="Self.LienHe" />
           <EntitySet Name="NXS" EntityType="Self.NX" />
           <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
-          <EntitySet Name="TaiKhoans" EntityType="Self.TaiKhoan" />
+          <EntitySet Name="Users" EntityType="Self.User" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -324,9 +326,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TaiKhoans">
-            <EntityTypeMapping TypeName="ShopModel.TaiKhoan">
-              <MappingFragment StoreEntitySet="TaiKhoan">
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ShopModel.User">
+              <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="maTaiKhoan" ColumnName="maTaiKhoan" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="matKhau" ColumnName="matKhau" />
@@ -335,6 +337,7 @@
                 <ScalarProperty Name="gioiTinh" ColumnName="gioiTinh" />
                 <ScalarProperty Name="Ten" ColumnName="Ten" />
                 <ScalarProperty Name="xacThucEmail" ColumnName="xacThucEmail" />
+                <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
