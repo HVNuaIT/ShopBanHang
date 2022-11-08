@@ -2,78 +2,194 @@
 
 @{
     ViewBag.Title = "DangKi";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
+@*
+    <h2>DangKi</h2>
 
-<h2>DangKi</h2>
+
+    @using (Html.BeginForm("XacThucDangKi","Accout",FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>TaiKhoan</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.matKhau, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.matKhau, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.matKhau, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
 
-@using (Html.BeginForm("XacThucDangKi","Accout",FormMethod.Post)) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>TaiKhoan</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-       
-        <div class="form-group">
-            @Html.LabelFor(model => model.matKhau, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.matKhau, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.matKhau, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.diaChi, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.diaChi, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.diaChi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.soDienThoai, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.soDienThoai, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.soDienThoai, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.gioiTinh, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.gioiTinh, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.gioiTinh, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
             </div>
         </div>
+    }
 
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.diaChi, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.diaChi, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.diaChi, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.soDienThoai, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.soDienThoai, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.soDienThoai, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-    
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.gioiTinh, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.gioiTinh, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.gioiTinh, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-       
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+*@
+<! DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+       Trang Đăng Kí Tài Khoản
+    </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<style>
+    html {
+        height: 100%;
+    }
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    body {
+        height: 100%;
+    }
+
+    .global-container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f5f5f5;
+    }
+
+    form {
+        padding-top: 10px;
+        font-size: 14px;
+        margin-top: 30px;
+    }
+
+    .card-title {
+        font-weight: 300;
+    }
+
+    .btn {
+        font-size: 14px;
+        margin-top: 20px;
+    }
+
+    .login-form {
+        width: 330px;
+        margin: 20px;
+    }
+
+    .sign-up {
+        text-align: center;
+        padding: 20px 0 0;
+    }
+
+    .alert {
+        margin-bottom: -30px;
+        font-size: 13px;
+        margin-top: 20px;
+    }
+</style>
+<body>
+    <div>
+        <a href="~/Home/Index" class="btn btn-warning">Trở về trang chủ</a>
+    </div>
+    <div class="pt-5">
+        <div class="global-container">
+            <div class="card login-form">
+                <div class="card-body">
+                    <h3 class="card-title text-center"> Đăng Kí Tài Khoản </h3>
+                    @using (Html.BeginForm("XacThucDangKi", "Accout", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="card-text">
+
+                            <form>
+                                <div class="form-group">
+                                    <label for="exampleInputten"> Tên Khách Hàng </label>
+                                    <input type="text" class="form-control form-control-sm" id="exampleInputten" name="ten">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">  Email address </label>
+                                    <input type="email" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp" name="Email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1"> Password </label>
+                                    <input type="password" class="form-control form-control-sm" id="exampleInputPassword1" name="pass">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputD"> Địa Chỉ </label>
+                                    <input type="text" class="form-control form-control-sm" id="exampleInputD" name="diaChi">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputsDT"> Số Điện Thoai </label>
+                                    <input type="number" class="form-control form-control-sm" id="exampleInputsDT" name="sdt">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputgT"> Giới tính  </label>
+                                    <input type="text" class="form-control form-control-sm" id="exampleInputgT" name="gioitinh">
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block"> Đăng kí </button>
+
+                                <div class="sign-up">
+                                    Quay lại Đăng Nhập <a href="~/Accout/Login"> Đăng Nhập </a>
+                                </div>
+
+
+                            </form>
+                            <br />
+                            <span style="color:green">@ViewBag.Message</span>
+                            <br />
+                            <span style="color:red">@ViewBag.error</span>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>  

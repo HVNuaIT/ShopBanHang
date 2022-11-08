@@ -145,9 +145,13 @@
     <Compile Include="Controllers\EmailSetupController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NSXController.cs" />
     <Compile Include="Controllers\ThanhToanController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Admin.cs">
+      <DependentUpon>Database.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BinhLuan.cs">
       <DependentUpon>Database.tt</DependentUpon>
@@ -182,7 +186,7 @@
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MailHelper.cs" />
-    <Compile Include="Models\NSX.cs">
+    <Compile Include="Models\NX.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PayCompare.cs" />
@@ -474,10 +478,10 @@
     <Content Include="Views\ThanhToan\HoaDon.cshtml" />
     <Content Include="Views\EmailSetup\Index.cshtml" />
     <Content Include="Views\Home\PaymentConfirm.cshtml" />
-    <Content Include="Views\Accout\DangNhap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\NSX\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

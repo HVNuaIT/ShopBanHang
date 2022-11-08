@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="ShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="maTaiKhoanAdmin" />
+          </Key>
+          <Property Name="maTaiKhoanAdmin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaiKhoan" Type="nvarchar" MaxLength="50" />
+          <Property Name="MatKhau" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="BinhLuan">
           <Key>
             <PropertyRef Name="maBinhLuan" />
@@ -59,12 +67,14 @@
           <Property Name="SDT" Type="nvarchar" MaxLength="50" />
           <Property Name="LoiNhan" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="NSX">
+        <EntityType Name="NXS">
           <Key>
-            <PropertyRef Name="maNSX" />
+            <PropertyRef Name="maNhaSanXuat" />
           </Key>
-          <Property Name="maNSX" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="tenNSX" Type="nvarchar(max)" />
+          <Property Name="maNhaSanXuat" Type="int" Nullable="false" />
+          <Property Name="TenNSX" Type="nvarchar" MaxLength="50" />
+          <Property Name="HinhAnh" Type="nvarchar(max)" />
+          <Property Name="maSanPham" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="SanPham">
           <Key>
@@ -77,8 +87,7 @@
           <Property Name="soLuong" Type="int" />
           <Property Name="moTa" Type="nvarchar(max)" />
           <Property Name="donGia" Type="float" />
-          <Property Name="giamGia" Type="int" />
-          <Property Name="NSX" Type="nvarchar(max)" />
+          <Property Name="giamGia" Type="float" />
         </EntityType>
         <EntityType Name="TaiKhoan">
           <Key>
@@ -94,12 +103,13 @@
           <Property Name="xacThucEmail" Type="bit" />
         </EntityType>
         <EntityContainer Name="ShopModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BinhLuan" EntityType="Self.BinhLuan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietHoaDon" EntityType="Self.ChiTietHoaDon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DanhMuc" EntityType="Self.DanhMuc" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HoaDon" EntityType="Self.HoaDon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LienHe" EntityType="Self.LienHe" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="NSX" EntityType="Self.NSX" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NXS" EntityType="Self.NXS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -108,6 +118,14 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="maTaiKhoanAdmin" />
+          </Key>
+          <Property Name="maTaiKhoanAdmin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaiKhoan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="BinhLuan">
           <Key>
             <PropertyRef Name="maBinhLuan" />
@@ -162,12 +180,14 @@
           <Property Name="SDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LoiNhan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="NSX">
+        <EntityType Name="NX">
           <Key>
-            <PropertyRef Name="maNSX" />
+            <PropertyRef Name="maNhaSanXuat" />
           </Key>
-          <Property Name="maNSX" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="tenNSX" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="maNhaSanXuat" Type="Int32" Nullable="false" />
+          <Property Name="TenNSX" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="maSanPham" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="SanPham">
           <Key>
@@ -180,8 +200,7 @@
           <Property Name="soLuong" Type="Int32" />
           <Property Name="moTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="donGia" Type="Double" />
-          <Property Name="giamGia" Type="Int32" />
-          <Property Name="NSX" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="giamGia" Type="Double" />
         </EntityType>
         <EntityType Name="TaiKhoan">
           <Key>
@@ -197,12 +216,13 @@
           <Property Name="xacThucEmail" Type="Boolean" />
         </EntityType>
         <EntityContainer Name="Shop" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
           <EntitySet Name="BinhLuans" EntityType="Self.BinhLuan" />
           <EntitySet Name="ChiTietHoaDons" EntityType="Self.ChiTietHoaDon" />
           <EntitySet Name="DanhMucs" EntityType="Self.DanhMuc" />
           <EntitySet Name="HoaDons" EntityType="Self.HoaDon" />
           <EntitySet Name="LienHes" EntityType="Self.LienHe" />
-          <EntitySet Name="NSXes" EntityType="Self.NSX" />
+          <EntitySet Name="NXS" EntityType="Self.NX" />
           <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
           <EntitySet Name="TaiKhoans" EntityType="Self.TaiKhoan" />
         </EntityContainer>
@@ -212,6 +232,15 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ShopModelStoreContainer" CdmEntityContainer="Shop">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="ShopModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="maTaiKhoanAdmin" ColumnName="maTaiKhoanAdmin" />
+                <ScalarProperty Name="TaiKhoan" ColumnName="TaiKhoan" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="BinhLuans">
             <EntityTypeMapping TypeName="ShopModel.BinhLuan">
               <MappingFragment StoreEntitySet="BinhLuan">
@@ -271,11 +300,13 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="NSXes">
-            <EntityTypeMapping TypeName="ShopModel.NSX">
-              <MappingFragment StoreEntitySet="NSX">
-                <ScalarProperty Name="maNSX" ColumnName="maNSX" />
-                <ScalarProperty Name="tenNSX" ColumnName="tenNSX" />
+          <EntitySetMapping Name="NXS">
+            <EntityTypeMapping TypeName="ShopModel.NX">
+              <MappingFragment StoreEntitySet="NXS">
+                <ScalarProperty Name="maNhaSanXuat" ColumnName="maNhaSanXuat" />
+                <ScalarProperty Name="TenNSX" ColumnName="TenNSX" />
+                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+                <ScalarProperty Name="maSanPham" ColumnName="maSanPham" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -290,7 +321,6 @@
                 <ScalarProperty Name="moTa" ColumnName="moTa" />
                 <ScalarProperty Name="donGia" ColumnName="donGia" />
                 <ScalarProperty Name="giamGia" ColumnName="giamGia" />
-                <ScalarProperty Name="NSX" ColumnName="NSX" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

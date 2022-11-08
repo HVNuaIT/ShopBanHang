@@ -25,12 +25,13 @@ namespace ShopBanHang.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<BinhLuan> BinhLuans { get; set; }
         public virtual DbSet<ChiTietHoaDon> ChiTietHoaDons { get; set; }
         public virtual DbSet<DanhMuc> DanhMucs { get; set; }
         public virtual DbSet<HoaDon> HoaDons { get; set; }
         public virtual DbSet<LienHe> LienHes { get; set; }
-        public virtual DbSet<NSX> NSXes { get; set; }
+        public virtual DbSet<NX> NXS { get; set; }
         public virtual DbSet<SanPham> SanPhams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
     }

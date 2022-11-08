@@ -12,9 +12,11 @@ namespace ShopBanHang.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class NSX
+    public partial class NX
     {
-        public string maNSX { get; set; }
-        public string tenNSX { get; set; }
+        public int maNhaSanXuat { get; set; }
+        public string TenNSX { get; set; }
+        public string HinhAnh { get; set; }
+        public string maSanPham { get; set; }
     }
 }
