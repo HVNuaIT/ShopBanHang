@@ -1,17 +1,22 @@
-﻿@model List<ShopBanHang.Models.SanPham>
+﻿@model PagedList.IPagedList<ShopBanHang.Models.SanPham>
+@using PagedList.Mvc
 @{
     ViewBag.Title = "SanPhamMoiNhat";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
 @{
     //ShopProject.Repository.ProductDAO proDAO = new ShopProject.Repository.ProductDAO();
     ShopBanHang.Models.Shop db = new ShopBanHang.Models.Shop();
+
+
 }
 <div class="content-top ">
     <div class="container ">
 
         <div class="spec ">
-           <h1 style="text-decoration:none;">Tất Cả Sản Phẩm </h1>
+            <h1 style="text-decoration:none;">Tất Cả Sản Phẩm </h1>
             <div class="ser-t">
                 <b></b>
                 <span><i></i></span>
@@ -22,10 +27,10 @@
             <div class=" tab-content tab-content-t ">
                 <div class="tab-pane active text-style" id="tab1">
                     <div class=" con-w3l">
-                     
-                        @foreach (var item in db.SanPhams.SqlQuery("SELECT * FROM SanPham "))
+
+                        @foreach (var item in Model)
                         {
-                            
+
                             // Double newPrice = Double.Parse(item.donGia) - ((Double.Parse(item.donGia) * item.giamGia.Value) / 100);
                             <div class="col-md-3 m-wthree" style="margin-bottom:30px;">
                                 <div class="col-m">
@@ -93,9 +98,22 @@
                                 </div>
                             </div>
                         }
+
                     </div>
                 </div>
             </div>
         </div>
+
+    </div>
+
 </div>
+<div style="text-align:center">
+    <br />
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("SanPhamMoiNhat",
+        new { page }))
+    <!-- Kết thúc -->
+
+
 </div>

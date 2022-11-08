@@ -16,6 +16,8 @@ namespace ShopBanHang.Controllers
         {
             return View();
         }
+       
+
         [HttpPost]
         public ActionResult XacThuc(TaiKhoan taiKhoan)
         {
