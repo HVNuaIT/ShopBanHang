@@ -40,9 +40,10 @@ namespace ShopBanHang.Controllers
                     Session["Email"] = check.FirstOrDefault().Email;
                     Session["idUser"] = check.FirstOrDefault().maTaiKhoan;
                     Session["TenKhachHang"] = check.FirstOrDefault().Ten;
+                    Session["DiaChi"] = check.FirstOrDefault().diaChi;
+                    Session["SoDienThoai"] = check.FirstOrDefault().soDienThoai;
 
-                   
-                   return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -61,7 +62,7 @@ namespace ShopBanHang.Controllers
         public ActionResult XacThucDangKi(string Email,string pass,string diaChi,string ten,int sdt,string gioitinh)
         {
            
-            string message = "";
+
             if (ModelState.IsValid)
             {
                 var check = db.Users.FirstOrDefault(s => s.Email.Equals(Email));
@@ -140,7 +141,7 @@ namespace ShopBanHang.Controllers
 
             var fromEmail = new MailAddress("namchibi18@gmail.com", "ShopVP");
             var toEmail = new MailAddress(emailID);
-            var fromEmailPassword = "vkuoutuxfchlsogr"; // Replace with actual password
+            var fromEmailPassword = "richuonmbfsbdign"; // Replace with actual password
             string subject = "Your account is successfully created!";
 
             string body = "<br/><br/>Cảm ơn quý khách đã đăng kí tài khoản " +

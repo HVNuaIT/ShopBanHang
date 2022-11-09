@@ -19,5 +19,6 @@ namespace ShopBanHang.Models
                 return (SoLuong *DonGia);
             }
         }
+        public HoaDon HoaDon { get; set; }
     }
 }
