@@ -1,11 +1,15 @@
-﻿@model ShopBanHang.Models.SanPham
+﻿
 @{
-    ViewBag.Title = "Trang chủ";
+    ViewBag.Title = "Tìm Theo Danh Mục";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@model PagedList.IPagedList<ShopBanHang.Models.SanPham>
+@using PagedList.Mvc
+
+
 @{
-    //ShopProject.Repository.ProductDAO proDAO = new ShopProject.Repository.ProductDAO();
+
     ShopBanHang.Models.Shop db = new ShopBanHang.Models.Shop();
 }
 <div data-vide-bg="video/video" style="position: relative;">
@@ -21,7 +25,7 @@
     <div class="container">
         <div class="banner-info">
             <div class="search-form">
-                @using (Ajax.BeginForm("SearchByName", "Home", new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "Get" }))
+                @using (Ajax.BeginForm("SearchByDanhMuc", "Home", new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "Get" }))
                 {
                     <input type="text" style="background-color:rgba(0, 0, 255, 0.50);" placeholder="Tìm kiếm..." name="name">
                     <button type="submit" class="btn btn-default" style="background-color:rgba(0, 0, 255, 0.50);"><i class=" fa fa-search"></i></button>
@@ -58,7 +62,7 @@
                             <div class="col-md-3 m-wthree" style="margin-bottom:30px;">
                                 <div class="col-m">
 
-                                    <a href="@Url.Action("ChiTiet", "ChiTietSanPham", new { Id=item.maSanPham})" class="offer-img">
+                                    <a href="@Url.Action("Index", "ChiTietSanPham", new { Id=item.maSanPham})" class="offer-img">
 
                                         @*   @if (Double.Parse(item.donGia) > newPrice)
                                             {
@@ -76,11 +80,11 @@
                                             </div>
                                             @if (item.tenSanPham.Length > 20)
                                             {
-                                                <h6><a href="@Url.Action("ChiTiet", "ChiTietSanPham", new { Id=item.maSanPham })" data-toggle="tooltip" title="@item.tenSanPham">@item.tenSanPham.Substring(0, 19) . . .</a></h6>
+                                                <h6><a href="@Url.Action("Index", "ChiTietSanPham", new { id=item.maSanPham })" data-toggle="tooltip" title="@item.tenSanPham">@item.tenSanPham.Substring(0, 19) . . .</a></h6>
                                             }
                                             else
                                             {
-                                                <h6><a href="@Url.Action("ChiTiet", "ChiTietSanPham", new { Id=item.maSanPham })">@item.tenSanPham</a></h6>
+                                                <h6><a href="@Url.Action("Index", "ChiTietSanPham", new { id=item.maSanPham })">@item.tenSanPham</a></h6>
                                             }
                                         </div>
 
@@ -125,146 +129,61 @@
                 </div>
             </div>
         </div>
-        </div>
     </div>
-        <!--image khuyến mãi-->
-        <div>
-            <img src="~/Image/QuanCao.jpg" class="center-block" />
-        </div>
-        <!--End Image khuyến mãi-->
-        <div class="spec " style="margin-top:30px;">
-            <h3><a href="@Url.Action("ProductsBestDiscount", "Products", new { title="Hãng Sản Xuất ", page=1 })" style="text-decoration:none;">Các Hãng Đồng Hành Cùng Shop</a></h3>
-            <div class="ser-t">
-                <b></b>
-                <span><i></i></span>
-                <b class="line"></b>
-            </div>
-        </div>
-        <div class="tab-head ">
-            <div class=" tab-content tab-content-t ">
-                <div class="tab-pane active text-style" id="tab1">
-                    <div class=" con-w3l">
-                        @{int qtt1 = 0;}
-                        @foreach (var item in db.NXS.SqlQuery("SELECT * FROM NXS ORDER BY maNhaSanXuat DESC"))
-                        {
-                            qtt1++;
-                            if (qtt1 > 4)
-                            {
-                                break;
-                            }
+</div>
+<!--image khuyến mãi-->
+<div>
+    <img src="~/Image/khuyen-mai.jpg" class="center-block" />
+</div>
+<!--End Image khuyến mãi-->
+<div class="spec " style="margin-top:30px;">
+    <h3><a href="@Url.Action("ProductsBestDiscount", "Products", new { title="Hãng Sản Xuất ", page=1 })" style="text-decoration:none;">Các Hãng Đồng Hành Cùng Shop</a></h3>
+    <div class="ser-t">
+        <b></b>
+        <span><i></i></span>
+        <b class="line"></b>
+    </div>
+</div>
+<div class="tab-head ">
+    <div class=" tab-content tab-content-t ">
+        <div class="tab-pane active text-style" id="tab1">
+            <div class=" con-w3l">
+                @{int qtt1 = 0;}
+                @foreach (var item in db.NXS.SqlQuery("SELECT * FROM NXS ORDER BY maNhaSanXuat DESC"))
+                {
+                    qtt1++;
+                    if (qtt1 > 4)
+                    {
+                        break;
+                    }
 
-                            <div class="col-md-3 m-wthree" style="margin-bottom:30px;">
-                                <div class="col-m">
+                    <div class="col-md-3 m-wthree" style="margin-bottom:30px;">
+                        <div class="col-m">
 
-                                    <div class="mid-1">
+                            <div class="mid-1">
 
 
-                                        <a href="#">
-                                            <img src="@item.HinhAnh" width="100" height="150" />
-                                        </a>
-
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
+                                <a href="#">
+                                    <img src="@item.HinhAnh" width="100" height="150" />
+                                </a>
 
                             </div>
+                            <div class="clearfix"></div>
+                        </div>
 
-
-                        }
                     </div>
-                </div>
 
 
+                }
             </div>
-
-
-         
         </div>
 
 
+    </div>
+</div>
 <script>
     $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip();
     });
-    
-   
-
 </script>
-<style>
-   .mid-1 img{
-       width:100%;
-   }
-    .hoverSlideHome img {
-        -webkit-transform: scale(0.8); /*Webkit: Scale down image to 0.8x original size*/
-        -moz-transform: scale(0.8); /*Mozilla scale version*/
-        -o-transform: scale(0.8); /*Opera scale version*/
-        -webkit-transition-duration: 0.5s; /*Webkit: Animation duration*/
-        -moz-transition-duration: 0.5s; /*Mozilla duration version*/
-        -o-transition-duration: 0.5s; /*Opera duration version*/
-        opacity: 0.9; /*initial opacity of images*/
-        margin: 0 10px 5px 0; /*margin between images*/
-    }
-
-        .hoverSlideHome img:hover {
-            -webkit-transform: scale(1.1); /*Webkit: Scale up image to 1.2x original size*/
-            -moz-transform: scale(1.1); /*Mozilla scale version*/
-            -o-transform: scale(1.1); /*Opera scale version*/
-            box-shadow: 0px 0px 30px gray; /*CSS3 shadow: 30px blurred shadow all around image*/
-            -webkit-box-shadow: 0px 0px 30px gray; /*Safari shadow version*/
-            -moz-box-shadow: 0px 0px 30px gray; /*Mozilla shadow version*/
-            opacity: 1;
-        }
-
-    .toasang {
-        margin: 20px;
-        position: relative;
-        display: block;
-        width: 80px;
-        height: 80px;
-        text-align: center;
-        border-radius: 100%;
-        font: 700 30px/80px 'arial';
-        text-decoration: none;
-        color: #313131;
-        z-index: 1;
-        -webkit-transition: all .3s ease;
-        -moz-transition: all .3s ease;
-        -o-transition: all .3s ease;
-        transition: all .3s ease;
-    }
-
-        .toasang:after {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            margin: auto;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            border-radius: 100%;
-            background: #dfdfdf;
-            z-index: -1;
-            -webkit-transition: all .3s ease;
-            -moz-transition: all .3s ease;
-            -o-transition: all .3s ease;
-            transition: all .3s ease;
-        }
-
-        .toasang:hover {
-            color: #fff;
-            background: #399;
-        }
-
-            .toasang:hover:after {
-                background: transparent;
-                -webkit-transform: scale(1.6);
-                -moz-transform: scale(1.6);
-                -ms-transform: scale(1.6);
-                -o-transform: scale(1.6);
-                transform: scale(1.6);
-            }
-</style>
 

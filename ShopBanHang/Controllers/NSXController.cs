@@ -1,4 +1,5 @@
-﻿using ShopBanHang.Models;
+﻿using PagedList;
+using ShopBanHang.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,14 @@ namespace ShopBanHang.Controllers
           
 
             return View();
+        }
+
+        public ActionResult ProductsByPdc(string id, int? page)
+        {
+            ViewBag.pdcName = db.NXS.SingleOrDefault(c => c.maSanPham == id).maSanPham;
+            int pageSize = 8;
+            int pageNumber = (page ?? 1);
+            return View(db.SanPhams.Where(p => p.maSanPham == id).OrderByDescending(x => x.maSanPham).ToPagedList(pageNumber, pageSize));
         }
     }
 }

@@ -7,6 +7,8 @@ namespace ShopBanHang.Models
 {
     public class ChiTietSanPham
     {
-        public SanPham sanPham { get; set; }
+       public SanPham sanPham { get; set; }
+       
+        
     }
 }

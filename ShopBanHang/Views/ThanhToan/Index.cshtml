@@ -67,7 +67,7 @@
                                         <div class="form-group">
                                             <label class="col-lg-4 control-label">Địa chỉ</label>
                                             <div class="col-lg-8">
-                                                <textarea required class="form-control input-sm field" placeholder="Vui lòng ghi địa chỉ chi tiết..." name="address" rows="5"  style="height:50px;"></textarea>
+                                                <textarea required class="form-control input-sm field" placeholder="Vui lòng ghi địa chỉ chi tiết..." name="address" rows="5" style="height:50px;"></textarea>
 
                                             </div>
                                         </div>
@@ -91,49 +91,53 @@
                             </div> <div class="col-sm-6 col-md-6">
                                 <div class="detail_ct" style="height:auto; min-height:inherit;">
                                     <legend>Giỏ hàng của bạn</legend>
-                                    <table class="table" style="background:#FFF; font-size:18px;">
-                                        <thead>
-                                            <tr>
-                                                <th>Hình</th>
-                                                <th>Sản phẩm</th>
-                                                <th>SL</th>
-                                                <th>Đơn giá</th>
-                                                <th>Thành tiền</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @{Double total = 0;}
-                                            @foreach (var item in Model)
-                                            {
-                                                <tr style="border-top:1px solid #999;">
-                                                    <td>
-                                                        <img src="@item.Hinh" width="48">
-                                                    </td>
-                                                    <td>
-                                                        <strong>
-                                                            @item.TenSanPham
-                                                        </strong>
-                                                    </td>
-                                                    <td>@item.SoLuong</td>
-                                                    <td>@item.DonGia.ToString("#,##0") VNĐ</td>
-                                                    <td>@item.ThanhTien.ToString("#,##0") VNĐ</td>
+                                    @{
+                                        List<ShopBanHang.Models.CartItem> tem = (List<ShopBanHang.Models.CartItem>)Session["giohang"];
+
+                                        <table class="table" style="background:#FFF; font-size:18px;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Hình</th>
+                                                    <th>Sản phẩm</th>
+                                                    <th>SL</th>
+                                                    <th>Đơn giá</th>
+                                                    <th>Thành tiền</th>
                                                 </tr>
-                                                total += item.ThanhTien;
-                                            }
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td colspan="6">
-                                                    <a class="btn btn-default hidden-xs" style="float:right;" href="@Url.Action("Index", "GioHang")">Quay về</a>
-                                                    <div class="clr"></div>
-                                                </td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                @{Double total = 0;}
+                                                @foreach (var item in Model)
+                                                {
+                                                    <tr style="border-top:1px solid #999;">
+                                                        <td>
+                                                            <img src="@item.Hinh" width="48">
+                                                        </td>
+                                                        <td>
+                                                            <strong>
+                                                                @item.TenSanPham
+                                                            </strong>
+                                                        </td>
+                                                        <td>@item.SoLuong</td>
+                                                        <td>@item.DonGia.ToString("#,##0") VNĐ</td>
+                                                        <td>@item.ThanhTien.ToString("#,##0") VNĐ</td>
+                                                    </tr>
+                                                    total += item.ThanhTien;
+                                                }
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td colspan="6">
+                                                        <a class="btn btn-default hidden-xs" style="float:right;" href="@Url.Action("Index", "GioHang")">Quay về</a>
+                                                        <div class="clr"></div>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    }
                                     <fieldset>
                                         <legend>Tổng</legend>
                                         <table class="table" style="background:#FFF; font-size:20px;">
@@ -151,13 +155,16 @@
 
                                                 </tr>
                                             </tfoot>
-                                            <a class="btn btn-primary" href="@Url.Action("Payment","Home")">Thanh toán bằng VNPAY</a>
+                                            <a class="btn btn-primary" href="@Url.Action("Payment","ThanhToan")">Thanh toán bằng VNPAY</a>
+                                           
                                         </table>
                                     </fieldset>
                                 </div>
                             </div> <div class="clr"></div>
                         </form>
-                       
+
+                        
+
                     </div>
                 </div>
             </div>

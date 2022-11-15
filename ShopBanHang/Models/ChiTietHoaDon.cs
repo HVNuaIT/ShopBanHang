@@ -21,5 +21,6 @@ namespace ShopBanHang.Models
         public Nullable<double> donGia { get; set; }
         public Nullable<double> ThanhTien { get; set; }
         public Nullable<int> giamGia { get; set; }
+        public string TrangThai { get; set; }
     }
 }

@@ -12,15 +12,12 @@ namespace ShopBanHang.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class BinhLuan
+    public partial class sysdiagram
     {
-        public int maBinhLuan { get; set; }
-        public string maSanPham { get; set; }
-        public Nullable<int> maTaiKhoan { get; set; }
-        public Nullable<System.DateTime> Ngay { get; set; }
-        public string noiDung { get; set; }
-        public Nullable<int> SaoBinhLuan { get; set; }
-        public SanPham san { get; set; }
-        public User user { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

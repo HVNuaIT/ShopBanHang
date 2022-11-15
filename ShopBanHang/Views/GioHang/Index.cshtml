@@ -21,14 +21,17 @@
     }
     else
     {
-        <div class="spec ">
-            <h3>Giỏ hàng</h3>
-            <div class="ser-t">
-                <b></b>
-                <span><i></i></span>
-                <b class="line"></b>
-            </div>
-        </div>
+<div class="spec ">
+    <h3>Giỏ hàng</h3>
+    @{
+        List<ShopBanHang.Models.CartItem> tem = (List<ShopBanHang.Models.CartItem>)Session["giohang"];
+    }
+    <div class="ser-t">
+        <b></b>
+        <span><i></i></span>
+        <b class="line"></b>
+    </div>
+</div>
         Double total = 0;
         int i = 0;
         <div class="row">
@@ -63,14 +66,15 @@
                             total += @item.ThanhTien;
 
                         }
-                        <tr>
-                            <td></td>
-                            <td class="text-right"></td>
-                            <td></td>
-                            <td class="text-right">Tổng thành tiền:</td>
-                            <td style="font-size:large;">@total.ToString("#,##0") VNĐ </td>
-                            <td><a href="@Url.Action("Index", "ThanhToan")" role="button" class="btn btn-success">Thanh toán</a></td>
-                        </tr>
+                    <tr>
+                        <td></td>
+                        <td class="text-right"></td>
+                        <td></td>
+                        <td class="text-right">Tổng thành tiền:</td>
+                        <td style="font-size:large;">@total.ToString("#,##0") VNĐ </td>
+                        <td><a href="@Url.Action("Index", "ThanhToan")" role="button" class="btn btn-success">Thanh toán</a></td>
+                        <td><a href="@Url.Action("Payment", "ThanhToan")" role="button" class="btn btn-success">Thanh toán Bằng Paypal</a></td>
+                    </tr>
                     </table>
                 </div>
 

@@ -72,11 +72,17 @@
 </head>
 
 <body id="style-6">
-  
+
     <div class="header">
         <div class="container">
             <div class="logo">
-                <h1><a href="@Url.Action("Index", "Home")"><b>T<br>H<br>E</b>Shopper<span>The Best Fashion</span></a></h1>
+                <h1>
+                    <a href="@Url.Action("Index", "Home")">
+                        <b>
+                            <br><br>E
+                        </b>Shop<span>VN</span>
+                    </a>
+                </h1>
             </div>
             <div class="head-t">
                 <ul class="card">
@@ -90,8 +96,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="btn btn-warning">
-                                Đơn Đặt Hàng
+                            <a href="~/Accout/ThayDoiThongTin" class="btn btn-warning">
+                                Thay Đổi Thông Tin Cá Nhân
                             </a>
                         </li>
                     }
@@ -156,17 +162,17 @@
                             <li class="dropdown ">
                                 <a href="#" class="dropdown-toggle  hyper" data-toggle="dropdown"><span>Hãng sản xuất<b class="caret"></b></span></a>
                                 <ul class="dropdown-menu">
-                                    <!--  <div class="col-sm-12">
+                                      <div class="col-sm-12">
                                                                         <ul class="multi-column-dropdown">
-                                                                            @*  @foreach (var itemPdc in db.Producers)
+                                                                              @foreach (var itemPdc in db.NXS)
                                     {
-                                        <li><a href="@Url.Action("ProductsByPdc", "Products", new { id = itemPdc.pdcID, page = 1 })"><img src="@itemPdc.pdcPhoto" width="20" height="20" /> @itemPdc.pdcName</a></li>
+                                        <li><a href="#"><img src="@itemPdc.HinhAnh" width="20" height="20" /> @itemPdc.TenNSX</a></li>
                                     }
 
                                                                         </ul>
                                                                     </div>
-                                                                            *@
-                                                                      -->
+                                                                            
+                                                                    
                                 </ul>
                             </li>
                             <li><a href="@Url.Action("Index","EmailSetup")" class="hyper "><span>Phản hồi</span></a></li>
@@ -192,7 +198,41 @@
         </div>
     </div>
     <div class="container body-content">
+
         @RenderBody()
+
+
+
+        <!-- Messenger Plugin chat Code -->
+        <div id="fb-root"></div>
+
+        <!-- Your Plugin chat code -->
+        <div id="fb-customer-chat" class="fb-customerchat">
+        </div>
+
+        <script>
+            var chatbox = document.getElementById('fb-customer-chat');
+            chatbox.setAttribute("page_id", "100256922875828");
+            chatbox.setAttribute("attribution", "biz_inbox");
+        </script>
+
+        <!-- Your SDK code -->
+        <script>
+            window.fbAsyncInit = function () {
+                FB.init({
+                    xfbml: true,
+                    version: 'v15.0'
+                });
+            };
+
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
         <!-- //footer-->
         <!-- smooth scrolling -->
         <div class="row">
@@ -252,6 +292,8 @@
                 </div>
             </div>
         </div>
+
+
     </div>
 
     <script type="text/javascript">
@@ -272,8 +314,6 @@
     <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
     <!-- //smooth scrolling  chat boss-->
     <script src="~/Content/js/bootstrap.js"></script>
-
-
 
 </body>
 

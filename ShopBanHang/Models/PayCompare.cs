@@ -6,7 +6,7 @@ using System.Web;
 
 namespace ShopBanHang.Models
 {
-    public class PayCompare:IComparer<string>
+    public class PayCompare : IComparer<string>
     {
         public int Compare(string x, string y)
         {

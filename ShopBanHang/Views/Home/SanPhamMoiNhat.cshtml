@@ -35,7 +35,7 @@
                             <div class="col-md-3 m-wthree" style="margin-bottom:30px;">
                                 <div class="col-m">
 
-                                    <a href="@Url.Action("Index", "ChiTietSanPham", new { Id=item.maSanPham})" class="offer-img">
+                                    <a href="@Url.Action("ChiTiet", "ChiTietSanPham", new { Id=item.maSanPham})" class="offer-img">
 
                                         @*   @if (Double.Parse(item.donGia) > newPrice)
                                             {
@@ -53,11 +53,11 @@
                                             </div>
                                             @if (item.tenSanPham.Length > 20)
                                             {
-                                                <h6><a href="@Url.Action("Index", "ChiTietSanPham", new { id=item.maSanPham })" data-toggle="tooltip" title="@item.tenSanPham">@item.tenSanPham.Substring(0, 19) . . .</a></h6>
+                                                <h6><a href="@Url.Action("ChiTiet", "ChiTietSanPham", new { id=item.maSanPham })" data-toggle="tooltip" title="@item.tenSanPham">@item.tenSanPham.Substring(0, 19) . . .</a></h6>
                                             }
                                             else
                                             {
-                                                <h6><a href="@Url.Action("Index", "ChiTietSanPham", new { id=item.maSanPham })">@item.tenSanPham</a></h6>
+                                                <h6><a href="@Url.Action("ChiTiet", "ChiTietSanPham", new { id=item.maSanPham })">@item.tenSanPham</a></h6>
                                             }
                                         </div>
 

@@ -4,11 +4,13 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Web;
+using System.Security.Cryptography;
 
 namespace ShopBanHang.Models
 {
     public class PayLib
     {
+        public const string VERSION = "2.1.0";
         private SortedList<string, string> _requestData = new SortedList<string, string>(new PayCompare());
         private SortedList<string, string> _responseData = new SortedList<string, string>(new PayCompare());
 

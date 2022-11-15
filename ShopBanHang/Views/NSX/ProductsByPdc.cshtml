@@ -1,0 +1,72 @@
+﻿@model PagedList.IPagedList<ShopBanHang.Models.SanPham>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "ProductsByPdc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--content-->
+<div class="content-top ">
+    <div class="container ">
+        <div class="spec ">
+            <h3>Hãng sản xuất @ViewBag.pdcName</h3>
+            <div class="ser-t">
+                <b></b>
+                <span><i></i></span>
+                <b class="line"></b>
+            </div>
+        </div>
+        @Html.PagedListPager(Model, page => Url.Action("ProductsByPdc", "Products", new { page }))
+        <div class="tab-head ">
+            <div class=" tab-content tab-content-t ">
+                <div class="tab-pane active text-style" id="tab1">
+                    <div class=" con-w3l">
+                        @foreach (var item in Model)
+                        {
+                           
+                            <div class="col-md-3 m-wthree" style="margin-bottom:30px;">
+                                <div class="col-m">
+                                    <a href="@Url.Action("ProductDetail", "Products", new { id=item.maSanPham })" class="offer-img">
+                                        <img src="@item.hinhAnh" width="150" height="150" />
+                        
+                                    </a>
+                                    <div class="mid-1">
+                                        <div class="women">
+                                            @if (item.tenSanPham.Length > 20)
+                                            {
+                                                <h6><a href="@Url.Action("ProductDetail", "Products", new { id=item.maSanPham })" data-toggle="tooltip" title="@item.tenSanPham">@item.tenSanPham.Substring(0, 19) . . .</a></h6>
+                                            }
+                                            else
+                                            {
+                                                <h6><a href="@Url.Action("ProductDetail", "Products", new { id=item.maSanPham })">@item.tenSanPham</a></h6>
+                                            }
+                                        </div>
+                                        (dON GIA: @item.donGia)
+                                        <div class="mid-2">
+                                        
+                                            <div class="clearfix"></div>
+                                          
+                                            <div>
+                                                <a href="#"><img src="@item.hinhAnh" width="20" height="20" /> @item.tenSanPham</a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="add">
+                                            <a class="btn btn-success" href="@Url.Action("ThemVaoGio", "GioHang", new { SanPhamID = item.maSanPham })"> <span class="glyphicon glyphicon-shopping-cart"></span>  Thêm vào giỏ </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+

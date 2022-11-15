@@ -1,0 +1,127 @@
+﻿
+@{
+    ViewBag.Title = "Thay đổi thông tin ";
+    Layout = null;
+}
+@model ShopBanHang.Models.User
+
+
+<! DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Trang Đăng Kí Tài Khoản
+    </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<style>
+    html {
+        height: 100%;
+    }
+
+    body {
+        height: 100%;
+    }
+
+    .global-container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f5f5f5;
+    }
+
+    form {
+        padding-top: 10px;
+        font-size: 14px;
+        margin-top: 30px;
+    }
+
+    .card-title {
+        font-weight: 300;
+    }
+
+    .btn {
+        font-size: 14px;
+        margin-top: 20px;
+    }
+
+    .login-form {
+        width: 330px;
+        margin: 20px;
+    }
+
+    .sign-up {
+        text-align: center;
+        padding: 20px 0 0;
+    }
+
+    .alert {
+        margin-bottom: -30px;
+        font-size: 13px;
+        margin-top: 20px;
+    }
+</style>
+<body>
+    <div>
+        <a href="~/Home/Index" class="btn btn-warning">Trở về trang chủ</a>
+    </div>
+    <div class="pt-5">
+        <div class="global-container">
+            <div class="card login-form">
+                <div class="card-body">
+                    <h3 class="card-title text-center"> Thay đổi thông tin Người dùng  </h3>
+                    @using (Html.BeginForm("Xacthucthaydoi", "Accout", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="card-text">
+
+                            <form>
+                                <div class="form-group">
+                                    <label for="exampleInputten"> Tên Khách Hàng </label>
+                                    <input type="text" class="form-control form-control-sm" id="exampleInputten" name="ten" value="@Session["TenKhachHang"]">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputD"> Địa Chỉ </label>
+                                    <input type="text" class="form-control form-control-sm" id="exampleInputD" name="diaChi" value="@Session["DiaChi"]">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputsDT"> Số Điện Thoai </label>
+                                    <input type="number" class="form-control form-control-sm" id="exampleInputsDT" name="sdt" value="@Session["SoDienThoai"]">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputgT"> Giới tính  </label>
+                                    <div class="col-md-10">
+                                        <select name="gioitinh" class="form-group">
+                                            @Session["gioitinh"]
+                                        <option value="Nam">Nam</option>
+                                        <option value="Nữ">Nữ</option>
+
+                                    </select>
+                                </div>
+
+
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Lưu Thay Đổi </button>
+
+                            <div class="sign-up">
+                                Quay lại Đăng Nhập <a href="~/Accout/Login"> Đăng Nhập </a>
+                            </div>
+
+
+                        </form>
+                        <br />
+                        <span style="color:green">@ViewBag.Message</span>
+                        <br />
+                        <span style="color:red">@ViewBag.error</span>
+                    </div>
+
+                }
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>  

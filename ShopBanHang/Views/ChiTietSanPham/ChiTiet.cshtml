@@ -1,0 +1,285 @@
+﻿@model ShopBanHang.Models.SanPham
+@{
+    ViewBag.Title = "ChiTiet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<ShopBanHang.Models.BinhLuan> ds = new List<ShopBanHang.Models.BinhLuan>();
+}
+
+<div class="single">
+    <div class="container left">
+        <div class="single-top">
+            <div class="col-md-5 single-top">
+                <div class="single-w3agile">
+                    <div id="picture-frame">
+                        <img src="@Model.hinhAnh" data-src="" alt="" class="img-responsive" />
+                    </div>
+                    <script src="~/Areas/Shopper/Content/js/jquery.zoomtoo.js"></script>
+                    <script>
+                        $(function () {
+                            $("#picture-frame").zoomToo({
+                                magnify: 1
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-7 single-top-left ">
+            <div class="single-right">
+
+                <h3>@Model.tenSanPham</h3>
+
+                <div class="pr-single">
+
+                </div>
+
+                <p class="in-pa">Giá: @Model.donGia VND </p>
+
+                <p class="in-pa">
+                    Số Lượng :
+                    <input type="number" min="1" step="1" value="1" />
+
+                </p>
+
+
+            </div>
+
+
+            <ul class="social-top">
+                <li><a href="http://facebook.com/profile.php?id=100038291719553" target="_blank" class="icon facebook"><i class="fa fa-facebook" aria-hidden="true"></i><span></span></a></li>
+            </ul>
+            <div class="add add-3">
+                <a class="btn btn-success" href="@Url.Action("ThemVaoGio", "GioHang", new { SanPhamID = @Model.maSanPham })"> <span class="glyphicon glyphicon-shopping-cart"></span>  Thêm vào giỏ </a>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="clearfix"> </div>
+    <!--TIêu đề-->
+    <div class="spec " style="margin-top:30px;">
+
+        <div class="ser-t">
+            <b></b>
+            <span><i></i></span>
+            <b class="line"></b>
+        </div>
+    </div>
+    <!--Sản phẩm-->
+    <div class="tab-head ">
+        <div class=" tab-content tab-content-t ">
+            <div class="tab-pane active text-style" id="tab1">
+                <div class=" con-w3l">
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"> </div>
+
+    <div class="product_desc">
+        <div id="horizontalTab">
+            <ul class="resp-tabs-list">
+                <li>Mô tả sản phẩm</li>
+                <li class="btn-danger"><a href="/ChiTietSanPham/BinhLuan">Bình luận</a></li>
+            </ul>
+            <div class="resp-tabs-container" id="horizontalTab">
+                <div class="product-desc">
+                    <p> <span>@Model.moTa</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mt-2">
+    <h5 class="mb-4">Gửi ý kiến bình luận tại đây</h5>
+
+    @using (Html.BeginForm("BinhLuan", "ChiTietSanPham", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+    <form>
+        <!-- Rating -->
+        <div>
+            <select name="sao" id="ddlRate" class="form-select  js-choice">
+                <option value="5" selected="">★★★★★ (5/5)</option>
+                <option value="4">★★★★☆ (4/5)</option>
+                <option value="3">★★★☆☆ (3/5)</option>
+                <option value="2">★★☆☆☆ (2/5)</option>
+                <option value="1">★☆☆☆☆ (1/5)</option>
+            </select>
+        </div>
+        <!-- Message -->
+        <div>
+            <input type="text" class="form-control form-control-sm" id="txtCommentNew" placeholder="Viết nhận xét tại đây" rows="5" name="NoiDung">
+        </div>
+        <!-- Button -->
+        <div>
+            <button type="submit" class="btn btn-primary mb-0">Bình luận</button>
+        </div>
+        <br />
+        <span style="color:green">@ViewBag.Message</span>
+
+    </form>
+
+     }
+
+</div>
+
+
+
+
+
+
+<!-- Leave Review END -->
+<!--Kêt thúc -->
+<div id="div_allcomment">
+    @foreach (var itemcomment in ds)
+    {
+        if (itemcomment.maBinhLuan != 0)
+        {
+            <div class="row">
+                <!-- Review item START -->
+                <div class="d-md-flex my-4">
+                    <!-- Avatar -->
+                    <div class="avatar avatar-xl me-4 flex-shrink-0">
+                        <img class="avatar-img rounded-circle" src="/assets/client/images/avatar/09.jpg" alt="avatar" width="40">
+                    </div>
+                    <!-- Text -->
+                    <div class="col-md-12">
+                        <div class="d-sm-flex mt-1 mt-md-0 align-items-center">
+                            <h5 class="me-3 mb-0">@itemcomment.maTaiKhoan</h5>
+                            <!-- Review star -->
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item me-0"><i class="fas fa-star text-warning"></i></li>
+                                @if (itemcomment.SaoBinhLuan >= 2)
+                                {
+                                    <li class="list-inline-item me-0"><i class="fas fa-star text-warning"></i></li>
+
+                                }
+                                else
+                                {
+                                    <li class="list-inline-item me-0"><i class="far fa-star text-warning"></i></li>
+                                }
+                                @if (itemcomment.SaoBinhLuan >= 3)
+                                {
+                                    <li class="list-inline-item me-0"><i class="fas fa-star text-warning"></i></li>
+
+                                }
+                                else
+                                {
+                                    <li class="list-inline-item me-0"><i class="far fa-star text-warning"></i></li>
+                                }
+                                @if (itemcomment.SaoBinhLuan >= 4)
+                                {
+                                    <li class="list-inline-item me-0"><i class="fas fa-star text-warning"></i></li>
+
+                                }
+                                else
+                                {
+                                    <li class="list-inline-item me-0"><i class="far fa-star text-warning"></i></li>
+                                }
+                                @if (itemcomment.SaoBinhLuan >= 5)
+                                {
+                                    <li class="list-inline-item me-0">★★★★★<i class="fas fa-star text-warning"></i></li>
+
+                                }
+                                else
+                                {
+                                    <li class="list-inline-item me-0"><i class="far fa-star text-warning"></i></li>
+                                }
+
+                            </ul>
+                        </div>
+                        <!-- Info -->
+                        <p class="small mb-2">@itemcomment.Ngay</p>
+                        <div class="mt-2">
+                            <p class="mb-2">@itemcomment.noiDung</p>
+                            <div class="bg-white"></div>
+                            <div class="d-flex flex-row">
+                                <a class="accordion-collapse collapse show" href="#commmentreply-@itemcomment.maTaiKhoan" data-bs-toggle="collapse" aria-expanded="true" aria-controls="collapse-1">
+                                    <i class="fas fa-reply me-2"></i>Reply
+                                </a>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Reply button -->
+
+
+                    </div>
+
+                </div>
+            </div>
+        }
+    }
+
+</div>
+
+
+<style>
+    .toasang {
+        margin: 20px;
+        position: relative;
+        display: block;
+        width: 80px;
+        height: 80px;
+        text-align: center;
+        border-radius: 100%;
+        font: 700 30px/80px 'arial';
+        text-decoration: none;
+        color: #313131;
+        z-index: 1;
+        -webkit-transition: all .3s ease;
+        -moz-transition: all .3s ease;
+        @*-ms-transition: all .3s ease;*@
+        -o-transition: all .3s ease;
+        transition: all .3s ease;
+    }
+
+        .toasang:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            margin: auto;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            border-radius: 100%;
+            background: #dfdfdf;
+            z-index: -1;
+            -webkit-transition: all .3s ease;
+            -moz-transition: all .3s ease;
+           @* -ms-transition: all .3s ease;*@
+            -o-transition: all .3s ease;
+            transition: all .3s ease;
+        }
+
+        .toasang:hover {
+            color: #fff;
+            background: #399;
+        }
+
+            .toasang:hover:after {
+                background: transparent;
+                -webkit-transform: scale(1.6);
+                -moz-transform: scale(1.6);
+                -ms-transform: scale(1.6);
+                -o-transform: scale(1.6);
+                transform: scale(1.6);
+            }
+</style>
+
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+
+
+
+

@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using System.Web.Services.Description;
 using System.Web.UI.WebControls;
 using System.Web.Security;
+using System.Data.Entity;
+using PayPal;
 
 namespace ShopBanHang.Controllers
 {
@@ -34,15 +36,12 @@ namespace ShopBanHang.Controllers
               
                 if (check!=null)
                 {
-
-                 
-
                     Session["Email"] = check.FirstOrDefault().Email;
                     Session["idUser"] = check.FirstOrDefault().maTaiKhoan;
                     Session["TenKhachHang"] = check.FirstOrDefault().Ten;
                     Session["DiaChi"] = check.FirstOrDefault().diaChi;
                     Session["SoDienThoai"] = check.FirstOrDefault().soDienThoai;
-
+                    Session["gioitinh"] = check.FirstOrDefault().gioiTinh;
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -167,5 +166,46 @@ namespace ShopBanHang.Controllers
                 smtp.Send(message);
         }
 
+
+        public ActionResult ThayDoiThongTin()
+        {
+            if (Session["idUser"] == null)
+            {
+                return RedirectToAction("Login", "Accout");
+            }
+            else
+            {
+                return View();
+            }
+
+           
+        }
+        [HttpPost]
+        public ActionResult Xacthucthaydoi( string diaChi, string ten, int sdt, string gioitinh)
+        {
+            
+          User tk = new User();
+            tk.Email = Session["Email"].ToString(); 
+            var check = db.Users.Where(x => x.Email == tk.Email).FirstOrDefault();
+            if (check != null) {
+                
+                check.Ten = ten;
+                check.diaChi = diaChi;
+                check.gioiTinh = gioitinh;
+                check.soDienThoai = sdt.ToString();
+                db.Entry(check).State = EntityState.Modified;
+                db.SaveChanges();
+                ViewBag.Message = "Thay Đổi thành công ";
+               
+                return RedirectToAction("Login","Accout");
+            }
+            else
+            {
+                ViewBag.error = "Thay Đổi Không thành công";
+                
+                return RedirectToAction("ThayDoiThongTin", "Accout");
+            }
+           
+        }
     }
 }
