@@ -26,7 +26,6 @@ namespace ShopBanHang.Models
         }
     
         public virtual DbSet<Admin> Admins { get; set; }
-        public virtual DbSet<BinhLuan> BinhLuans { get; set; }
         public virtual DbSet<ChiTietHoaDon> ChiTietHoaDons { get; set; }
         public virtual DbSet<DanhMuc> DanhMucs { get; set; }
         public virtual DbSet<HoaDon> HoaDons { get; set; }

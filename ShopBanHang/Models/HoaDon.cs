@@ -22,5 +22,7 @@ namespace ShopBanHang.Models
         public string SoDienThoai { get; set; }
         public string diaChi { get; set; }
         public string Email { get; set; }
+    
+        public virtual User User { get; set; }
     }
 }
