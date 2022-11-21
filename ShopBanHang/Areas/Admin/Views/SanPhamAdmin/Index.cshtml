@@ -1,0 +1,76 @@
+﻿@model IEnumerable<ShopBanHang.Models.SanPham>
+
+@{
+    ViewBag.Title = "Danh Sách Sản Phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.maDanhMuc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tenSanPham)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hinhAnh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.soLuong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.moTa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.donGia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.giamGia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NX.TenNSX)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.maDanhMuc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tenSanPham)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hinhAnh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.soLuong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.moTa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.donGia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.giamGia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NX.TenNSX)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.maSanPham }) |
+            @Html.ActionLink("Details", "Details", new { id=item.maSanPham }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.maSanPham })
+        </td>
+    </tr>
+}
+
+</table>

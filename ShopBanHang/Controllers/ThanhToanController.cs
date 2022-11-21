@@ -66,6 +66,7 @@ namespace ShopBanHang.Controllers
             newOrder.Email = email;
             newOrder.maTaiKhoan= cus.maTaiKhoan;
             db.HoaDons.Add(newOrder);
+            db.SaveChanges();
             var donhangnew = db.HoaDons.FirstOrDefault(p => p.Email.Equals(email));
 
             ChiTietHoaDon newOrdts = new ChiTietHoaDon();
@@ -73,7 +74,7 @@ namespace ShopBanHang.Controllers
             
             for (int i = 0; i < giohang.Count; i++)
             {
-                newOrdts.maHoaDon = donhangnew.maHoaDon;
+                newOrdts.maHoaDon =donhangnew.maHoaDon;
                 newOrdts.maSanPham = giohang.ElementAtOrDefault(i).SanPhamID;
                 newOrdts.soLuong = giohang.ElementAtOrDefault(i).SoLuong;
                 newOrdts.donGia = giohang.ElementAtOrDefault(i).DonGia;
@@ -101,11 +102,11 @@ namespace ShopBanHang.Controllers
             new MailHelper().SendMail(email, "Don hang moi ", content);// gui ve email khach
             new MailHelper().SendMail(toEmail,"Don hang moi ",content);//gui ve email quan tri 
            
-            db.SaveChanges();
+           
             
             Session["MHD"] = "HD" + newOrder.maHoaDon;
             Session["Phone"] = phone;
-            
+          
             //xoá sạch giỏ hàng
             giohang.Clear();
             return RedirectToAction("HoaDon", "ThanhToan");
@@ -141,7 +142,8 @@ namespace ShopBanHang.Controllers
             newOrder.maTaiKhoan = Convert.ToInt32(Session["idUser"]);
          
             db.HoaDons.Add(newOrder);
-            Session["IdDonHang"] = newOrder.maHoaDon;
+            db.SaveChanges();
+           // Session["IdDonHang"] = newOrder.maHoaDon;
             var donhangnew = db.HoaDons.FirstOrDefault(p => p.Email.Equals(newOrder.Email));
             
 
@@ -168,12 +170,13 @@ namespace ShopBanHang.Controllers
                 newOrdts.donGia = giohang.ElementAtOrDefault(i).DonGia;
                 newOrdts.ThanhTien = giohang.ElementAtOrDefault(i).ThanhTien;
                 newOrdts.TrangThai = "Đã thanh toán ";
-                newOrdts.maHoaDon =Convert.ToInt32(Session["IdDonHang"]);
+                newOrdts.maHoaDon = donhangnew.maHoaDon;
                
                 var ma = db.SanPhams.Where(x => x.maSanPham == newOrdts.maSanPham).First();
                 ma.soLuong -= newOrdts.soLuong;
                 db.Entry(ma).State = EntityState.Modified; //THAY DOI TRNAG THAI SO LUONG CUA SAN PHAM
                 db.ChiTietHoaDons.Add(newOrdts);
+                db.SaveChanges();
 
             }
             
@@ -187,7 +190,7 @@ namespace ShopBanHang.Controllers
             pay.AddRequestData("vnp_OrderType", "other"); //topup: Nạp tiền điện thoại - billpayment: Thanh toán hóa đơn - fashion: Thời trang - other: Thanh toán trực tuyến
             pay.AddRequestData("vnp_ReturnUrl", returnUrl); //URL thông báo kết quả giao dịch khi Khách hàng kết thúc thanh toán
             string paymentUrl = pay.CreateRequestUrl(url, hashSecret);
-            db.SaveChanges();
+          
             giohang.Clear();
             return Redirect(paymentUrl);
         }
