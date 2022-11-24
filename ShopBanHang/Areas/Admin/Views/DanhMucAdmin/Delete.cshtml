@@ -1,0 +1,35 @@
+﻿@model ShopBanHang.Models.DanhMuc
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+<h3>Bạn có muốn xóa không?</h3>
+<div class="table table-bordered">
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+         Mã Danh Mục
+        </dt>
+
+        <dd>
+          Tên Danh Mục
+        </dd>
+
+       
+
+    </dl>
+
+    @using (Html.BeginForm("Delete","DanhMucAdmin",FormMethod.Post)) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Trở về", "Index")
+        </div>
+    }
+</div>

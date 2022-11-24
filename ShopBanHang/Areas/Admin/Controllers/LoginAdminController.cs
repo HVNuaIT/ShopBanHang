@@ -1,6 +1,8 @@
 ﻿using ShopBanHang.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.Helpers;
@@ -34,7 +36,7 @@ namespace ShopBanHang.Areas.Admin.Controllers
                 {
                    
                     Session["idAdmin"] = check.maTaiKhoanAdmin;
-                    Session["TenKhachHang"] = check.TaiKhoan;
+                    Session["TenAdmin"] = check.TaiKhoan;
                     
                     return RedirectToAction("Index", "HomeAdmin");
                 }
@@ -50,6 +52,42 @@ namespace ShopBanHang.Areas.Admin.Controllers
         {
             Session.Clear();
             return RedirectToAction("DangNhapAdmin", "LoginAdmin");
+        }
+        public ActionResult ThayDoi()
+        {
+            if (Session["idAdmin"] == null)
+            {
+                return RedirectToAction("DangNhapAdmin", "LoginAdmin");
+            }
+            else
+            {
+                return View();
+            }
+        }
+        [HttpPost]
+        public ActionResult ThayDoi(ShopBanHang.Models.Admin admin,string pass,string passnew, string passnews)
+        {
+             admin = new Models.Admin();
+           
+            var check = db.Admins.Where(x => x.MatKhau == pass).FirstOrDefault();
+
+            if (check != null && passnew==passnews)
+            {
+
+              check.MatKhau = passnew;
+                db.Entry(check).State = EntityState.Modified;
+                db.SaveChanges();
+                ViewBag.Message = "Thay Đổi thành công ";
+
+                return RedirectToAction("DangNhapAdmin", "LoginAdmin");
+            }
+            else
+            {
+                ViewBag.error = "Thay Đổi Không thành công";
+
+                return RedirectToAction("ThayDoi", "LoginAdmin");
+            }
+          
         }
     }
 }

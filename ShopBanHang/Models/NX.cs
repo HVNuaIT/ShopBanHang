@@ -14,17 +14,8 @@ namespace ShopBanHang.Models
     
     public partial class NX
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public NX()
-        {
-            this.SanPhams = new HashSet<SanPham>();
-        }
-    
         public int maNhaSanXuat { get; set; }
         public string TenNSX { get; set; }
         public string HinhAnh { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SanPham> SanPhams { get; set; }
     }
 }

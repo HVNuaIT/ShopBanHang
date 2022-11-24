@@ -19,6 +19,7 @@ namespace ShopBanHang.Areas.Admin.Controllers
             }
             else
             {
+                
                 string a = "Đã thanh toán";
                 Session["TongDT"] = db.ChiTietHoaDons.Where(x=>x.TrangThai.Equals(a)).Sum(x=>x.ThanhTien).ToString();
                 Session["KhachHang"]= db.Users.Count();

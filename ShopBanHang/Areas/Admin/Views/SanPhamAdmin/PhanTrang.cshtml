@@ -1,0 +1,83 @@
+﻿@model PagedList.IPagedList<ShopBanHang.Models.SanPham>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "PhanTrang";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Mã danh mục
+        </th>
+        <th>
+            Tên Sản Phẩm
+        </th>
+        <th>
+            Hình Ảnh
+        </th>
+        <th>
+            Số Lượng
+        </th>
+        <th>
+            Mô Tả
+        </th>
+        <th>
+            Đơn Gía
+        </th>
+        <th>
+            Giảm Gía
+        </th>
+        <th>
+            Tên Nhà Sản Xuất
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.maDanhMuc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tenSanPham)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hinhAnh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.soLuong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.moTa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.donGia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.giamGia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NX.TenNSX)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.maSanPham }) |
+                @Html.ActionLink("Details", "Details", new { id = item.maSanPham }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.maSanPham })
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("PhanTrang",
+    new { page }))
+

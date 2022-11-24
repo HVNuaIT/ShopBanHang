@@ -23,7 +23,5 @@ namespace ShopBanHang.Models
         public Nullable<double> donGia { get; set; }
         public Nullable<double> giamGia { get; set; }
         public Nullable<int> maNhaSanXuat { get; set; }
-    
-        public virtual NX NX { get; set; }
     }
 }

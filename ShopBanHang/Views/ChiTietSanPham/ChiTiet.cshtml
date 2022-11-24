@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "ChiTiet";
     Layout = "~/Views/Shared/_Layout.cshtml";
-  
+
 }
 
 <div class="single">
@@ -93,39 +93,10 @@
         </div>
     </div>
 </div>
-<div class="mt-2">
-    <h5 class="mb-4">Gửi ý kiến bình luận tại đây</h5>
 
-    @using (Html.BeginForm("BinhLuan", "ChiTietSanPham", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-    <form>
-        <!-- Rating -->
-        <div>
-            <select name="sao" id="ddlRate" class="form-select  js-choice">
-                <option value="5" selected="">★★★★★ (5/5)</option>
-                <option value="4">★★★★☆ (4/5)</option>
-                <option value="3">★★★☆☆ (3/5)</option>
-                <option value="2">★★☆☆☆ (2/5)</option>
-                <option value="1">★☆☆☆☆ (1/5)</option>
-            </select>
-        </div>
-        <!-- Message -->
-        <div>
-            <input type="text" class="form-control form-control-sm" id="txtCommentNew" placeholder="Viết nhận xét tại đây" rows="5" name="NoiDung">
-        </div>
-        <!-- Button -->
-        <div>
-            <button type="submit" class="btn btn-primary mb-0">Bình luận</button>
-        </div>
-        <br />
-        <span style="color:green">@ViewBag.Message</span>
-
-    </form>
-
-     }
-
-</div>
-
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v15.0" nonce="f7c47gZn"></script>
+<div class="fb-comments" data-href="http://localhost:4392/ChiTietSanPham/ChiTiet/DM1" data-width="" data-numposts="5"></div>
 
 
 
@@ -134,9 +105,9 @@
 <!-- Leave Review END -->
 <!--Kêt thúc -->
 
-       
 
-</div>
+
+
 
 
 <style>

@@ -16,6 +16,5 @@ namespace ShopBanHang.Models
     {
         public string maDanhMuc { get; set; }
         public string tenDanhMuc { get; set; }
-        public string maSanPham { get; set; }
     }
 }

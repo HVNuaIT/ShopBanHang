@@ -31,7 +31,7 @@ namespace ShopBanHang.Controllers
             if (giohang.FirstOrDefault(m => m.SanPhamID == SanPhamID) == null) // ko co sp nay trong gio hang
             {
                 Models.SanPham sp = db.SanPhams.Find(SanPhamID);  // tim sp theo sanPhamID
-
+            
                 CartItem newItem = new CartItem()
                 {
                     SanPhamID = SanPhamID,

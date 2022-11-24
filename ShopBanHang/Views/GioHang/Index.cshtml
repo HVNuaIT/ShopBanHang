@@ -50,7 +50,7 @@
                         {
                             <tr>
                                 <td class="text-center"><img src="@item.Hinh" width="70" height="60" /> </td>
-                                <td><a target="_blank" href="@Url.Action("ProductDetail", "Products", new { id = item.SanPhamID })" style="font-size:medium;"> @item.TenSanPham </a> </td>
+                                <td><a target="_blank" href="@Url.Action("ChiTiet", "ChiTietSanPham", new { id = item.SanPhamID })" style="font-size:medium;"> @item.TenSanPham </a> </td>
                                 <td>
                                     <form id="formSoluong_@i" action="@Url.Action("SuaSoLuong","GioHang")" method="get">
                                         <input type="hidden" name="SanPhamID" value="@item.SanPhamID" />
