@@ -5549,8 +5549,10 @@
     <Content Include="Areas\Admin\Views\NSXAdmin\Details.cshtml" />
     <Content Include="Areas\Admin\Views\NSXAdmin\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\NSXAdmin\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\DonHangAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\LoginAdmin\ThayDoi.cshtml" />
+    <Content Include="Areas\Admin\Views\DonHangAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DonHangAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\DonHangAdmin\Details.cshtml" />
     <None Include="Properties\PublishProfiles\namchibi-001-site1 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\namchibi-001-site1 - Web Deploy.pubxml" />
     <None Include="Properties\Settings.settings">
@@ -5783,7 +5785,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>60844</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:4392/</IISUrl>
+          <IISUrl>http://localhost:60844/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>http://namchibi-001-site1.etempurl.com/</CustomServerUrl>

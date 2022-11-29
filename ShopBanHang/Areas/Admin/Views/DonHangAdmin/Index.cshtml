@@ -5,71 +5,64 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+<h2>Danh Sách Đơn Hàng</h2>
 
 
-
-
-
-<h1>Danh Sách Đơn Hàng</h1>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<table class="table table-bordered">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.maHoaDon)
+        Mã Hóa Đơn 
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.maSanPham)
+         Mã Sản Phẩm
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.soLuong)
+           Số Lượng
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.donGia)
+         Đơn Gía
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ThanhTien)
+           Thành Tiền
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.giamGia)
+           Giảm Gía
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TrangThai)
+           Trạng Thái
         </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.maHoaDon)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.maSanPham)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.soLuong)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.donGia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ThanhTien)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.giamGia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TrangThai)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.maChiTietHoaDon }) |
-                @Html.ActionLink("Details", "Details", new { id = item.maChiTietHoaDon }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.maChiTietHoaDon })
-            </td>
-        </tr>
-    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.maHoaDon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.maSanPham)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.soLuong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.donGia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThanhTien)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.giamGia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrangThai)
+        </td>
+        <td>
+           
+            @Html.ActionLink("Chi Tiết", "Details", new { id=item.maHoaDon }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.maHoaDon })
+        </td>
+    </tr>
+}
 
 </table>

@@ -1,0 +1,75 @@
+﻿@model ShopBanHang.Models.HoaDon
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>HoaDon</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.maTaiKhoan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maTaiKhoan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenKhach)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenKhach)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngayMuaHang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngayMuaHang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ghiChu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ghiChu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoDienThoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoDienThoai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.diaChi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diaChi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Xóa", "Delete", new { id = Model.maHoaDon }) |
+    @Html.ActionLink("Trở về", "Index")
+</p>

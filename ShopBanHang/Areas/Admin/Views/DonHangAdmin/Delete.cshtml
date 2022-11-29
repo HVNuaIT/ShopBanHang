@@ -1,0 +1,92 @@
+﻿@model ShopBanHang.Models.ChiTietHoaDon
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@{ 
+    ShopBanHang.Models.Shop db = new ShopBanHang.Models.Shop();
+}
+
+<h3>Bạn có muốn xóa không?</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã chi tiết
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maChiTietHoaDon)
+        </dd>
+
+       <dt>
+           Mã hóa đơn
+       </dt>
+        <dd>
+            @Html.DisplayFor(model =>model.maHoaDon)
+        </dd>
+
+        <dt>
+            mã sản phẩm
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maSanPham)
+        </dd>
+
+        <dt>
+            Số lượng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soLuong)
+        </dd>
+
+        <dt>
+            Đơn giá
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.donGia)
+        </dd>
+
+        <dt>
+            Thành tiền
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThanhTien)
+        </dd>
+
+        <dt>
+            Giảm giá
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.giamGia)
+        </dd>
+
+        <dt>
+            Trạng Thái
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrangThai)
+        </dd>
+
+
+
+    </dl>
+
+    @using (Html.BeginForm("Delete","DonHangAdmin",FormMethod.Post)) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Trở về", "Index")
+        </div>
+    }
+</div>
